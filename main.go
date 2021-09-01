@@ -3,14 +3,14 @@ package main
 import (
 	"crud-api/database"
 	"crud-api/router"
-	"crud-api/user"
+	"crud-api/wire"
 )
 
 func main() {
 	db := database.InitDB()
 	en := router.InitRouter()
 
-	userAPI := user.InitController(user.InitService(db))
+	userAPI := wire.InitUserAPI(db)
 	userAPI.Register(en)
 
 	router.Start(en)
